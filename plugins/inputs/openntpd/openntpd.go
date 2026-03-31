@@ -186,7 +186,7 @@ func parseFraction(s string) (num, den int64, ok bool) {
 func parsePeer(scanner *bufio.Scanner, headerLine string, acc telegraf.Accumulator) {
 	headerFields := strings.Fields(headerLine)
 
-	mFields := make(map[string]interface{})
+	mFields := make(map[string]interface{}, 7)
 	tags := make(map[string]string)
 
 	// DNS resolution error → keep DNS name as remote

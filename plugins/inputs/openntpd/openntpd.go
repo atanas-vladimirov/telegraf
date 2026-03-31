@@ -275,6 +275,9 @@ func parseSensor(scanner *bufio.Scanner, headerLine string, acc telegraf.Accumul
 	}
 	statsLine := scanner.Text()
 	statsFields := strings.Fields(statsLine)
+	if len(statsFields) == 0 {
+		return
+	}
 
 	// Optional state prefix (e.g. "*")
 	if len(statsFields) > 0 && strings.ContainsAny(statsFields[0], "*") {

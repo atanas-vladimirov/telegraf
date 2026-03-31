@@ -164,7 +164,7 @@ func parseStatusLine(line string, acc telegraf.Accumulator) {
 		fields["clock_synced"] = int64(0)
 	}
 
-	acc.AddFields("openntpd_status", fields, make(map[string]string))
+	acc.AddFields("openntpd_status", fields, nil)
 }
 
 // parseFraction splits "12/12" into (numerator, denominator, ok).

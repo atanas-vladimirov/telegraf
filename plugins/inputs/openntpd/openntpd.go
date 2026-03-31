@@ -187,7 +187,7 @@ func parsePeer(scanner *bufio.Scanner, headerLine string, acc telegraf.Accumulat
 	headerFields := strings.Fields(headerLine)
 
 	mFields := make(map[string]interface{}, 7)
-	tags := make(map[string]string)
+	tags := make(map[string]string, 3)
 
 	// DNS resolution error → keep DNS name as remote
 	if headerFields[0] != "not" {

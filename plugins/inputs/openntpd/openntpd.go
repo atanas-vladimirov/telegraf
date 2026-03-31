@@ -201,6 +201,9 @@ func parsePeer(scanner *bufio.Scanner, headerLine string, acc telegraf.Accumulat
 	}
 	statsLine := scanner.Text()
 	statsFields := strings.Fields(statsLine)
+	if len(statsFields) == 0 {
+		return
+	}
 
 	// Optional state prefix (e.g. "*")
 	if strings.ContainsAny(statsFields[0], "*") {

@@ -185,6 +185,9 @@ func parseFraction(s string) (num, den int64, ok bool) {
 // (peer address / DNS name); the second line is read from scanner.
 func parsePeer(scanner *bufio.Scanner, headerLine string, acc telegraf.Accumulator) {
 	headerFields := strings.Fields(headerLine)
+    if len(headerFields) == 0 {                                                                                                                                                                                      
+        return
+    }
 
 	mFields := make(map[string]interface{}, 7)
 	tags := make(map[string]string, 3)
@@ -280,7 +283,7 @@ func parseSensor(scanner *bufio.Scanner, headerLine string, acc telegraf.Accumul
 	}
 
 	// Optional state prefix (e.g. "*")
-	if len(statsFields) > 0 && strings.ContainsAny(statsFields[0], "*") {
+	if strings.ContainsAny(statsFields[0], "*") {
 		tags["state_prefix"] = statsFields[0]
 		statsFields = statsFields[1:]
 	}
